@@ -167,94 +167,94 @@ with mlflow.start_run(run_name="XGBoost_FineTune_Manual"):
     print(f"Best CV Score: {xgb_random_search.best_score_:.4f}")
     print(f"Test Accuracy: {xgb_accuracy:.4f}")
 
-# with mlflow.start_run(run_name="AdaBoost_FineTune"):
-#     start_time = time.time()
+with mlflow.start_run(run_name="AdaBoost_FineTune"):
+    start_time = time.time()
 
-#     mlflow.sklearn.autolog(disable=True)
+    mlflow.sklearn.autolog(disable=True)
 
-#     print("Starting AdaBoost fine-tuning ...")
+    print("Starting AdaBoost fine-tuning ...")
 
-#     ada_param_grid = {
-#         'n_estimators': [50, 100, 200],
-#         'learning_rate': [0.01, 0.1, 0.5, 1.0]
-#     }
+    ada_param_grid = {
+        'n_estimators': [50, 100, 200],
+        'learning_rate': [0.01, 0.1, 0.5, 1.0]
+    }
 
-#     ada_grid_search = GridSearchCV(
-#         estimator=AdaBoostClassifier(random_state=42),
-#         param_grid=ada_param_grid,
-#         cv=5,
-#         scoring='f1_weighted',
-#         n_jobs=-1,
-#         verbose=1
-#     )
+    ada_grid_search = GridSearchCV(
+        estimator=AdaBoostClassifier(random_state=42),
+        param_grid=ada_param_grid,
+        cv=5,
+        scoring='f1_weighted',
+        n_jobs=-1,
+        verbose=1
+    )
 
-#     ada_grid_search.fit(features_train, target_train)
-#     best_ada_model = ada_grid_search.best_estimator_
+    ada_grid_search.fit(features_train, target_train)
+    best_ada_model = ada_grid_search.best_estimator_
 
-#     ada_pred = best_ada_model.predict(features_test)
-#     ada_pred_proba = best_ada_model.predict_proba(features_test)
-#     ada_pred_labels = le.inverse_transform(ada_pred)
-#     true_labels = le.inverse_transform(target_test)
+    ada_pred = best_ada_model.predict(features_test)
+    ada_pred_proba = best_ada_model.predict_proba(features_test)
+    ada_pred_labels = le.inverse_transform(ada_pred)
+    true_labels = le.inverse_transform(target_test)
 
-#     ada_accuracy = accuracy_score(true_labels, ada_pred_labels)
-#     ada_f1 = f1_score(true_labels, ada_pred_labels, average="weighted")
-#     ada_precision = precision_score(
-#         true_labels, ada_pred_labels, average="weighted")
-#     ada_recall = recall_score(true_labels, ada_pred_labels, average="weighted")
-#     ada_auc = roc_auc_score(target_test, ada_pred_proba[:, 1])
+    ada_accuracy = accuracy_score(true_labels, ada_pred_labels)
+    ada_f1 = f1_score(true_labels, ada_pred_labels, average="weighted")
+    ada_precision = precision_score(
+        true_labels, ada_pred_labels, average="weighted")
+    ada_recall = recall_score(true_labels, ada_pred_labels, average="weighted")
+    ada_auc = roc_auc_score(target_test, ada_pred_proba[:, 1])
 
-#     mlflow.log_params(ada_grid_search.best_params_)
-#     mlflow.log_param("cv_best_score", ada_grid_search.best_score_)
-#     mlflow.log_param("model_type", "AdaBoost")
-#     mlflow.log_param("feature_scaling", "StandardScaler")
+    mlflow.log_params(ada_grid_search.best_params_)
+    mlflow.log_param("cv_best_score", ada_grid_search.best_score_)
+    mlflow.log_param("model_type", "AdaBoost")
+    mlflow.log_param("feature_scaling", "StandardScaler")
 
-#     mlflow.log_metrics({
-#         "test_accuracy": ada_accuracy,
-#         "test_f1_score": ada_f1,
-#         "test_precision": ada_precision,
-#         "test_recall": ada_recall,
-#         "test_auc_roc": ada_auc,
-#         "cross_val_score": ada_grid_search.best_score_
-#     })
+    mlflow.log_metrics({
+        "test_accuracy": ada_accuracy,
+        "test_f1_score": ada_f1,
+        "test_precision": ada_precision,
+        "test_recall": ada_recall,
+        "test_auc_roc": ada_auc,
+        "cross_val_score": ada_grid_search.best_score_
+    })
 
-#     training_time = time.time() - start_time
-#     mlflow.log_metric("training_time_seconds", training_time)
-#     mlflow.log_metric("n_features", features_train.shape[1])
-#     mlflow.log_metric("n_training_samples", features_train.shape[0])
-#     mlflow.log_metric("n_test_samples", features_test.shape[0])
+    training_time = time.time() - start_time
+    mlflow.log_metric("training_time_seconds", training_time)
+    mlflow.log_metric("n_features", features_train.shape[1])
+    mlflow.log_metric("n_training_samples", features_train.shape[0])
+    mlflow.log_metric("n_test_samples", features_test.shape[0])
 
-#     mlflow.sklearn.log_model(best_ada_model, "adaboost_model")
+    mlflow.sklearn.log_model(best_ada_model, "adaboost_model")
 
-#     cm_path = save_confusion_matrix(
-#         true_labels,
-#         ada_pred_labels,
-#         labels=le.classes_,
-#         title="AdaBoost Finetune - Confusion Matrix",
-#         filename="ada_finetune_cm",
-#     )
-#     mlflow.log_artifact(cm_path)
+    cm_path = save_confusion_matrix(
+        true_labels,
+        ada_pred_labels,
+        labels=le.classes_,
+        title="AdaBoost Finetune - Confusion Matrix",
+        filename="ada_finetune_cm",
+    )
+    mlflow.log_artifact(cm_path)
 
-#     fi_path = plot_feature_importance(
-#         best_ada_model,
-#         features.columns,
-#         "AdaBoost FineTune - Feature Importance",
-#         "ada_finetune_fi"
-#     )
-#     mlflow.log_artifact(fi_path)
+    fi_path = plot_feature_importance(
+        best_ada_model,
+        features.columns,
+        "AdaBoost FineTune - Feature Importance",
+        "ada_finetune_fi"
+    )
+    mlflow.log_artifact(fi_path)
 
-#     report = classification_report(true_labels, ada_pred_labels)
-#     report_path = os.path.join("artifacts", "ada_finetune_report.txt")
-#     with open(report_path, "w") as f:
-#         f.write("AdaBoost FineTune - Classification Report\n")
-#         f.write("="*50 + "\n")
-#         f.write(f"Timestamp: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}\n")
-#         f.write(report)
-#         f.write(f"\nBest CV Score: {ada_grid_search.best_score_:.4f}")
-#         f.write(f"\nTraining Time: {training_time:.2f} seconds")
-#         f.write(f"\nBest Parameters: {ada_grid_search.best_params_}")
+    report = classification_report(true_labels, ada_pred_labels)
+    report_path = os.path.join("artifacts", "ada_finetune_report.txt")
+    with open(report_path, "w") as f:
+        f.write("AdaBoost FineTune - Classification Report\n")
+        f.write("="*50 + "\n")
+        f.write(f"Timestamp: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}\n")
+        f.write(report)
+        f.write(f"\nBest CV Score: {ada_grid_search.best_score_:.4f}")
+        f.write(f"\nTraining Time: {training_time:.2f} seconds")
+        f.write(f"\nBest Parameters: {ada_grid_search.best_params_}")
 
-#     mlflow.log_artifact(report_path)
+    mlflow.log_artifact(report_path)
 
-#     print("AdaBoost FineTune Logging Completed!")
-#     print(f"Best CV Score: {ada_grid_search.best_score_:.4f}")
-#     print(f"Test Accuracy: {ada_accuracy:.4f}")
+    print("AdaBoost FineTune Logging Completed!")
+    print(f"Best CV Score: {ada_grid_search.best_score_:.4f}")
+    print(f"Test Accuracy: {ada_accuracy:.4f}")

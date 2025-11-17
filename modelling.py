@@ -103,47 +103,47 @@ with mlflow.start_run(run_name="XGBoost_Baseline"):
     print("Accuracy XGBoost Model: ", xgb_model_acc)
     print("F1 Score XGBoost Model: ", xgb_model_f1)
 
-# with mlflow.start_run(run_name="AdaBoost_Baseline"):
-#     mlflow.sklearn.autolog()
+with mlflow.start_run(run_name="AdaBoost_Baseline"):
+    mlflow.sklearn.autolog()
 
-#     ada_model = AdaBoostClassifier(
-#         n_estimators=300,
-#         learning_rate=0.1,
-#         random_state=42
-#     )
-#     ada_model.fit(features_train, target_train)
+    ada_model = AdaBoostClassifier(
+        n_estimators=300,
+        learning_rate=0.1,
+        random_state=42
+    )
+    ada_model.fit(features_train, target_train)
 
-#     ada_model_pred = ada_model.predict(features_test)
-#     ada_model_pred = le.inverse_transform(ada_model_pred)
-#     labels = le.inverse_transform(target_test)
+    ada_model_pred = ada_model.predict(features_test)
+    ada_model_pred = le.inverse_transform(ada_model_pred)
+    labels = le.inverse_transform(target_test)
 
-#     cm_path = save_confusion_matrix(
-#         labels,
-#         ada_model_pred,
-#         labels=le.classes_,
-#         title="AdaBoost Confusion Matrix",
-#         filename="adaboost_confusion_matrix",
-#     )
+    cm_path = save_confusion_matrix(
+        labels,
+        ada_model_pred,
+        labels=le.classes_,
+        title="AdaBoost Confusion Matrix",
+        filename="adaboost_confusion_matrix",
+    )
 
-#     mlflow.log_artifact(cm_path)
+    mlflow.log_artifact(cm_path)
 
-#     report = classification_report(labels, ada_model_pred)
+    report = classification_report(labels, ada_model_pred)
 
-#     report_path = os.path.join(
-#         "artifacts", "adaboost_classification_report.txt")
+    report_path = os.path.join(
+        "artifacts", "adaboost_classification_report.txt")
 
-#     with open(report_path, "w") as f:
-#         f.write(report)
+    with open(report_path, "w") as f:
+        f.write(report)
 
-#     mlflow.log_artifact(report_path)
+    mlflow.log_artifact(report_path)
 
-#     ada_model_acc = accuracy_score(labels, ada_model_pred)
-#     ada_model_f1 = f1_score(labels, ada_model_pred, average="weighted")
+    ada_model_acc = accuracy_score(labels, ada_model_pred)
+    ada_model_f1 = f1_score(labels, ada_model_pred, average="weighted")
 
-#     mlflow.log_metrics({
-#         "test_accuracy": ada_model_acc,
-#         "test_f1_score": ada_model_f1
-#     })
+    mlflow.log_metrics({
+        "test_accuracy": ada_model_acc,
+        "test_f1_score": ada_model_f1
+    })
 
-#     print("Accuracy AdaBoost Model: ", ada_model_acc)
-#     print("F1 Score AdaBoost Model: ", ada_model_f1)
+    print("Accuracy AdaBoost Model: ", ada_model_acc)
+    print("F1 Score AdaBoost Model: ", ada_model_f1)
