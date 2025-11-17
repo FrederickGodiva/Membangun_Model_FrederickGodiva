@@ -52,7 +52,7 @@ def plot_feature_importance(model, feature_names, title, filename):
 
 
 # Used when monitoring in Dagshub
-dagshub.init(repo_owner='FrederickGodiva',
+dagshub.init(repo_owner='frederickgodiva',
              repo_name=' breast-cancer-mlflow', mlflow=True)
 mlflow.set_tracking_uri(
     "https://dagshub.com/FrederickGodiva/ breast-cancer-mlflow.mlflow")

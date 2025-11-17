@@ -10,6 +10,9 @@ from xgboost import XGBClassifier
 import mlflow
 import dagshub
 
+os.environ["DAGSHUB_USERNAME"] = "FrederickGodiva"
+os.environ["DAGSHUB_TOKEN"] = "5ca1a3976465b213517cef4e4235c0e6373aef6e"
+
 
 def save_confusion_matrix(y_true, y_pred, labels, title, filename):
     os.makedirs("artifacts", exist_ok=True)
@@ -36,6 +39,7 @@ dagshub.init(repo_owner='FrederickGodiva',
              repo_name='Membangun_Model_FrederickGodiva', mlflow=True)
 mlflow.set_tracking_uri(
     "https://dagshub.com/FrederickGodiva/Membangun_Model_FrederickGodiva.mlflow")
+
 
 # Used when monitoring in localhost
 # mlflow.set_tracking_uri("http://127.0.0.1:5000/")
