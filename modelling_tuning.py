@@ -53,9 +53,9 @@ def plot_feature_importance(model, feature_names, title, filename):
 
 # Used when monitoring in Dagshub
 dagshub.init(repo_owner='frederickgodiva',
-             repo_name=' breast-cancer-mlflow', mlflow=True)
+             repo_name='Membangun_Model_FrederickGodiva', mlflow=True)
 mlflow.set_tracking_uri(
-    "https://dagshub.com/FrederickGodiva/ breast-cancer-mlflow.mlflow")
+    "https://dagshub.com/FrederickGodiva/Membangun_Model_FrederickGodiva.mlflow")
 
 # Used when monitoring in localhost
 # mlflow.set_tracking_uri("http://127.0.0.1:5000/")
