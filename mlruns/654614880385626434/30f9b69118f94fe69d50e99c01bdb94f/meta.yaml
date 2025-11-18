@@ -1,0 +1,15 @@
+artifact_uri: mlflow-artifacts:/654614880385626434/30f9b69118f94fe69d50e99c01bdb94f/artifacts
+end_time: 1763389427600
+entry_point_name: ''
+experiment_id: '654614880385626434'
+lifecycle_stage: active
+run_id: 30f9b69118f94fe69d50e99c01bdb94f
+run_name: XGBoost_Baseline
+run_uuid: 30f9b69118f94fe69d50e99c01bdb94f
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1763389421103
+status: 3
+tags: []
+user_id: LENOVO

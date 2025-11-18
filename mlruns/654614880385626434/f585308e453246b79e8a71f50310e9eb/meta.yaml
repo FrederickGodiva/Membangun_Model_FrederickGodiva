@@ -1,0 +1,15 @@
+artifact_uri: mlflow-artifacts:/654614880385626434/f585308e453246b79e8a71f50310e9eb/artifacts
+end_time: 1763389434263
+entry_point_name: ''
+experiment_id: '654614880385626434'
+lifecycle_stage: active
+run_id: f585308e453246b79e8a71f50310e9eb
+run_name: AdaBoost_Baseline
+run_uuid: f585308e453246b79e8a71f50310e9eb
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1763389427674
+status: 3
+tags: []
+user_id: LENOVO

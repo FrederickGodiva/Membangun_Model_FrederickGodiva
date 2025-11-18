@@ -1,0 +1,15 @@
+artifact_uri: mlflow-artifacts:/654614880385626434/31a349acf173487f902293a3894d52ce/artifacts
+end_time: 1763389473147
+entry_point_name: ''
+experiment_id: '654614880385626434'
+lifecycle_stage: active
+run_id: 31a349acf173487f902293a3894d52ce
+run_name: XGBoost_FineTune_Manual
+run_uuid: 31a349acf173487f902293a3894d52ce
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1763389449965
+status: 3
+tags: []
+user_id: LENOVO

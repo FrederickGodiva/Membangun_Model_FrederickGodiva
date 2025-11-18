@@ -1,0 +1,6 @@
+artifact_location: mlflow-artifacts:/654614880385626434
+creation_time: 1763389420855
+experiment_id: '654614880385626434'
+last_update_time: 1763389420855
+lifecycle_stage: active
+name: BreastCancer_Experiment

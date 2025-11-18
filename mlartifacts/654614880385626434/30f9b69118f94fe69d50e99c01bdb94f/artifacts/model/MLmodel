@@ -1,0 +1,47 @@
+artifact_path: model
+flavors:
+  python_function:
+    data: model.xgb
+    env:
+      conda: conda.yaml
+      virtualenv: python_env.yaml
+    loader_module: mlflow.xgboost
+    python_version: 3.12.7
+  xgboost:
+    code: null
+    data: model.xgb
+    model_class: xgboost.sklearn.XGBClassifier
+    model_format: xgb
+    xgb_version: 3.1.1
+mlflow_version: 2.19.0
+model_size_bytes: 241905
+model_uuid: 31925e74a4a04c71ac279dfbdb3698b1
+run_id: 30f9b69118f94fe69d50e99c01bdb94f
+signature:
+  inputs: '[{"type": "double", "name": "radius_mean", "required": true}, {"type":
+    "double", "name": "texture_mean", "required": true}, {"type": "double", "name":
+    "perimeter_mean", "required": true}, {"type": "double", "name": "area_mean", "required":
+    true}, {"type": "double", "name": "smoothness_mean", "required": true}, {"type":
+    "double", "name": "compactness_mean", "required": true}, {"type": "double", "name":
+    "concavity_mean", "required": true}, {"type": "double", "name": "concave points_mean",
+    "required": true}, {"type": "double", "name": "symmetry_mean", "required": true},
+    {"type": "double", "name": "fractal_dimension_mean", "required": true}, {"type":
+    "double", "name": "radius_se", "required": true}, {"type": "double", "name": "texture_se",
+    "required": true}, {"type": "double", "name": "perimeter_se", "required": true},
+    {"type": "double", "name": "area_se", "required": true}, {"type": "double", "name":
+    "smoothness_se", "required": true}, {"type": "double", "name": "compactness_se",
+    "required": true}, {"type": "double", "name": "concavity_se", "required": true},
+    {"type": "double", "name": "concave points_se", "required": true}, {"type": "double",
+    "name": "symmetry_se", "required": true}, {"type": "double", "name": "fractal_dimension_se",
+    "required": true}, {"type": "double", "name": "radius_worst", "required": true},
+    {"type": "double", "name": "texture_worst", "required": true}, {"type": "double",
+    "name": "perimeter_worst", "required": true}, {"type": "double", "name": "area_worst",
+    "required": true}, {"type": "double", "name": "smoothness_worst", "required":
+    true}, {"type": "double", "name": "compactness_worst", "required": true}, {"type":
+    "double", "name": "concavity_worst", "required": true}, {"type": "double", "name":
+    "concave points_worst", "required": true}, {"type": "double", "name": "symmetry_worst",
+    "required": true}, {"type": "double", "name": "fractal_dimension_worst", "required":
+    true}]'
+  outputs: '[{"type": "tensor", "tensor-spec": {"dtype": "int64", "shape": [-1]}}]'
+  params: null
+utc_time_created: '2025-11-17 14:23:41.958207'

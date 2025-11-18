@@ -1,0 +1,15 @@
+artifact_uri: mlflow-artifacts:/654614880385626434/0a1700f5f7fa4775967a8b194bcad382/artifacts
+end_time: 1763389481174
+entry_point_name: ''
+experiment_id: '654614880385626434'
+lifecycle_stage: active
+run_id: 0a1700f5f7fa4775967a8b194bcad382
+run_name: AdaBoost_FineTune
+run_uuid: 0a1700f5f7fa4775967a8b194bcad382
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1763389473185
+status: 3
+tags: []
+user_id: LENOVO

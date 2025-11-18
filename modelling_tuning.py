@@ -114,7 +114,6 @@ with mlflow.start_run(run_name="XGBoost_FineTune_Manual"):
     mlflow.log_params(xgb_random_search.best_params_)
     mlflow.log_param("cv_best_score", xgb_random_search.best_score_)
     mlflow.log_param("model_type", "XGBoost")
-    mlflow.log_param("feature_scaling", "StandardScaler")
 
     mlflow.log_metrics({
         "test_accuracy": xgb_accuracy,
@@ -206,7 +205,6 @@ with mlflow.start_run(run_name="AdaBoost_FineTune"):
     mlflow.log_params(ada_grid_search.best_params_)
     mlflow.log_param("cv_best_score", ada_grid_search.best_score_)
     mlflow.log_param("model_type", "AdaBoost")
-    mlflow.log_param("feature_scaling", "StandardScaler")
 
     mlflow.log_metrics({
         "test_accuracy": ada_accuracy,
