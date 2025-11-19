@@ -32,14 +32,14 @@ def save_confusion_matrix(y_true, y_pred, labels, title, filename):
 
 
 # Used when monitoring in Dagshub
-dagshub.init(repo_owner='frederickgodiva',
-             repo_name='Membangun_Model_FrederickGodiva', mlflow=True)
-mlflow.set_tracking_uri(
-    "https://dagshub.com/FrederickGodiva/Membangun_Model_FrederickGodiva.mlflow")
+# dagshub.init(repo_owner='frederickgodiva',
+#              repo_name='Membangun_Model_FrederickGodiva', mlflow=True)
+# mlflow.set_tracking_uri(
+#     "https://dagshub.com/FrederickGodiva/Membangun_Model_FrederickGodiva.mlflow")
 
 
 # Used when monitoring in localhost
-# mlflow.set_tracking_uri("http://127.0.0.1:5000/")
+mlflow.set_tracking_uri("http://127.0.0.1:5000/")
 mlflow.set_experiment("BreastCancer_Experiment")
 
 df = pd.read_csv("processed_data.csv")
@@ -80,8 +80,6 @@ with mlflow.start_run(run_name="XGBoost_Baseline"):
         filename="xgb_confusion_matrix",
     )
 
-    mlflow.log_artifact(cm_path)
-
     report = classification_report(labels, xgb_model_pred)
 
     report_path = os.path.join(
@@ -89,8 +87,6 @@ with mlflow.start_run(run_name="XGBoost_Baseline"):
 
     with open(report_path, "w") as f:
         f.write(report)
-
-    mlflow.log_artifact(report_path)
 
     xgb_model_acc = accuracy_score(labels, xgb_model_pred)
     xgb_model_f1 = f1_score(labels, xgb_model_pred, average="weighted")
@@ -125,8 +121,6 @@ with mlflow.start_run(run_name="AdaBoost_Baseline"):
         filename="adaboost_confusion_matrix",
     )
 
-    mlflow.log_artifact(cm_path)
-
     report = classification_report(labels, ada_model_pred)
 
     report_path = os.path.join(
@@ -134,8 +128,6 @@ with mlflow.start_run(run_name="AdaBoost_Baseline"):
 
     with open(report_path, "w") as f:
         f.write(report)
-
-    mlflow.log_artifact(report_path)
 
     ada_model_acc = accuracy_score(labels, ada_model_pred)
     ada_model_f1 = f1_score(labels, ada_model_pred, average="weighted")
